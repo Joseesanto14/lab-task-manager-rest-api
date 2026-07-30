@@ -20,5 +20,4 @@ O projeto segue os princípios de **Domain-Driven Design (DDD)** e **Clean Archi
 
 - **Kotlin** (Linguagem principal)
 - **Spring Boot** (Framework para API REST)
-- **Lombok**
 - **Mockito** (Testes unitários e mocks)
