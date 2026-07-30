@@ -14,6 +14,6 @@ class CreateTaskUseCase(
     fun execute(input: CreateTaskInput): TaskOutput {
         val task = Task(input.title, input.description)
         val saved = repository.save(task)
-        return TaskOutput.from(task)
+        return TaskOutput.from(saved)
     }
 }

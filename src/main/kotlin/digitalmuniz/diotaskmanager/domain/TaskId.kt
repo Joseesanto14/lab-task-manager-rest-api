@@ -1,9 +1,9 @@
 package digitalmuniz.diotaskmanager.domain
 
-import org.springframework.util.Assert
-import java.util.UUID
+import java.util.*
 
-data class TaskId(
+@JvmInline
+value class TaskId(
     val id: UUID = UUID.randomUUID()
 ) {
     init {
