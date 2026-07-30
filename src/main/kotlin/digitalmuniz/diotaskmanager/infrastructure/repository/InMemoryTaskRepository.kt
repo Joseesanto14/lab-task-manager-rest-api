@@ -3,7 +3,9 @@ package digitalmuniz.diotaskmanager.infrastructure.repository
 import digitalmuniz.diotaskmanager.domain.Task
 import digitalmuniz.diotaskmanager.domain.TaskId
 import digitalmuniz.diotaskmanager.domain.TaskRepository
+import org.springframework.stereotype.Repository
 
+@Repository
 class InMemoryTaskRepository : TaskRepository {
     val storage = HashMap<TaskId, Task>()
 

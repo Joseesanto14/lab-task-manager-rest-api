@@ -9,4 +9,5 @@ data class Task(
     val description: String? = null,
     val status: TaskStatus = TaskStatus.PENDING
 ) {
+    constructor(title: String, description: String?): this(id = TaskId(), title = title, description = description)
 }
