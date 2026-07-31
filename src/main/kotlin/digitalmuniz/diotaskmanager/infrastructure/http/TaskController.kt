@@ -9,6 +9,7 @@ import digitalmuniz.diotaskmanager.domain.TaskId
 import digitalmuniz.diotaskmanager.infrastructure.http.request.CreateTaskRequest
 import digitalmuniz.diotaskmanager.infrastructure.http.request.UpdateTaskRequest
 import digitalmuniz.diotaskmanager.infrastructure.http.response.TaskResponse
+import jakarta.validation.Valid
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 import java.util.*
@@ -23,7 +24,7 @@ class TaskController(
     val updateTaskUseCase: UpdateTaskUseCase
 ) {
     @PostMapping
-    fun create(@RequestBody request: CreateTaskRequest): TaskResponse {
+    fun create(@RequestBody @Valid request: CreateTaskRequest): TaskResponse {
         val input = request.toInput()
         val output = createTaskUseCase.execute(input)
         return TaskResponse.from(output)
