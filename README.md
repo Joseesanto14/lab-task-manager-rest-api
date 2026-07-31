@@ -1,23 +1,81 @@
 # Task Manager API 📝
 
-API REST para gerenciamento de tarefas (Task Manager) desenvolvida durante o laboratório **"Criando sua primeira API REST"** da plataforma **DIO (Digital Innovation One)**.
-
-> ℹ️ **Nota de Implementação:** O curso foi ministrado originalmente em **Java**, porém este repositório traz a implementação adaptada e construída em **Kotlin**.
+API REST em **Kotlin** + **Spring Boot** para gerenciamento de tarefas.
 
 ---
 
-## 🏗️ Arquitetura do Projeto
+## 🚀 Como Executar
 
-O projeto segue os princípios de **Domain-Driven Design (DDD)** e **Clean Architecture**, sendo organizado nos seguintes pacotes principais:
-
-- **`domain`**: Coração da aplicação. Contém as entidades de negócio puras, objetos de valor e os contratos (interfaces) dos repositórios, sem dependências de frameworks externos.
-- **`application`**: Camada de casos de uso (Use Cases) e regras de negócio da aplicação, orquestrando as entidades do domínio para realizar as operações.
-- **`infrastructure`**: Detalhes técnicos e elementos externos, como controllers REST, adaptadores de banco de dados e configurações do Spring.
+```bash
+./gradlew bootRun
+```
+Servidor: `http://localhost:8080/tasks`
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+## 🔌 Endpoints & Payloads Mínimos
 
-- **Kotlin** (Linguagem principal)
-- **Spring Boot** (Framework para API REST)
-- **Mockito** (Testes unitários e mocks)
+### 1. Criar Tarefa (`POST /tasks`) — `201 Created`
+**Payload Mínimo:**
+```json
+{
+  "title": "Estudar Kotlin"
+}
+```
+**cURL:**
+```bash
+curl -X POST http://localhost:8080/tasks \
+  -H "Content-Type: application/json" \
+  -d '{"title": "Estudar Kotlin"}'
+```
+
+---
+
+### 2. Listar Tarefas (`GET /tasks`) — `200 OK`
+**cURL:**
+```bash
+curl http://localhost:8080/tasks
+```
+
+---
+
+### 3. Buscar por ID (`GET /tasks/{id}`) — `200 OK`
+**cURL:**
+```bash
+curl http://localhost:8080/tasks/{id}
+```
+
+---
+
+### 4. Atualizar Tarefa (`PATCH /tasks/{id}`) — `200 OK`
+**Payload Mínimo:**
+```json
+{
+  "title": "Estudar Kotlin Avançado",
+  "status": "COMPLETED"
+}
+```
+**cURL:**
+```bash
+curl -X PATCH http://localhost:8080/tasks/{id} \
+  -H "Content-Type: application/json" \
+  -d '{"title": "Estudar Kotlin Avançado", "status": "COMPLETED"}'
+```
+
+---
+
+### 5. Deletar Tarefa (`DELETE /tasks/{id}`) — `204 No Content`
+**cURL:**
+```bash
+curl -X DELETE http://localhost:8080/tasks/{id}
+```
+
+---
+
+## 📑 Documentação Automatizada (REST Docs)
+
+```bash
+./gradlew test asciidoctor
+```
+Gera a documentação completa em HTML:  
+`build/docs/asciidoc/index.html`
