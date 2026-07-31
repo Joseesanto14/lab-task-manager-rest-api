@@ -11,7 +11,7 @@ data class TaskOutput(
     companion object {
         fun from(task: Task): TaskOutput {
             return TaskOutput(
-                task.id.toString(),
+                task.id.id.toString(),
                 task.title,
                 task.description,
                 task.status.name
