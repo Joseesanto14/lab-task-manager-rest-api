@@ -24,6 +24,7 @@ class TaskController(
     val updateTaskUseCase: UpdateTaskUseCase
 ) {
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     fun create(@RequestBody @Valid request: CreateTaskRequest): TaskResponse {
         val input = request.toInput()
         val output = createTaskUseCase.execute(input)

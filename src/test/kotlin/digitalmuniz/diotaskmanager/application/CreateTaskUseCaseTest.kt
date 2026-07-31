@@ -27,7 +27,8 @@ class CreateTaskUseCaseTest {
     fun `should create task successfully`() {
         val input = CreateTaskInput("Estudar Kotlin", "Finalizar o módulo de data classes")
 
-        `when`(repository.save(any())).thenAnswer { invocation -> invocation.getArgument(0)}
+        val dummy = digitalmuniz.diotaskmanager.domain.Task("dummy", "dummy")
+        `when`(repository.save(org.mockito.Mockito.any() ?: dummy)).thenAnswer { invocation -> invocation.getArgument(0) as digitalmuniz.diotaskmanager.domain.Task }
 
         val output = useCase.execute(input)
 
@@ -36,6 +37,6 @@ class CreateTaskUseCaseTest {
         assertEquals("Estudar Kotlin", output.title)
         assertEquals("Finalizar o módulo de data classes", output.description)
 
-        verify(repository, times(1)).save(any())
+        verify(repository, times(1)).save(org.mockito.Mockito.any() ?: dummy)
     }
 }
